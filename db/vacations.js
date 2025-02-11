@@ -7,34 +7,23 @@ var settings = require('../db/settings')
 // CREATE the vacation package
 exports.save = function (data, callback) {
 
-    new model.Vacations(data).save(function (err, inserted) {
-        callback(err, inserted)
-
-    })
+    new model.Vacations(data).save()
 }
 
 // CREATE multiple vacation packages
 exports.saveMany = function (rows, callback) {
 
-    model.Vacations.insertMany(rows, function (err, docs) {
-        callback(err, docs)
-    })
-
+    model.Vacations.insertMany(rows)
 }
 
 // UPDATE the vacation packages
 // http://mongoosejs.com/docs/api.html#model_Model.update
 exports.update = function (criteria, doc, callback) {
     // Replaced .update() with .updateMany() as .update() is deprecated
-    model.Vacations.updateMany(criteria, doc, function (err, data) {
-        callback(err, data)
-
-    })
+    model.Vacations.updateMany(criteria, doc)
 }
 
 // RETRIEVE vacation packages based on criteria
 exports.select = function (criteria, callback) {
-    model.Vacations.find(criteria, function (err, data) {
-        callback(err, data)
-    })
+    model.Vacations.find(criteria)
 }
